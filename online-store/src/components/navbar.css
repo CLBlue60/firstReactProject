@@ -1,17 +1,16 @@
 .navbar-menu {
     padding: 5px;
     display: flex;
-    justify-content: space-around;
     height: 60px;
     align-items: center;
+    justify-content: space-between;
 }
 a{
-    text-transform: uppercase;
     font-size: 18px;
-    color: blue;
+    color: white;
     letter-spacing: 1px;
     font-weight: bolder;
-    text-decoration: none;
+    text-decoration-color: red;
 }
 a:hover{
     color:goldenrod;

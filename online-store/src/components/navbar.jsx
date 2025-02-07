@@ -1,19 +1,17 @@
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css';
 
 function Navbar() {
-    return (
-        <div>
-            <nav>
-                <div className='navbar-menu'>
-                <a href='/login'>Log in</a>
-                <a href='/search'>Search</a>
-                <a href='/subscribe'>Subscribe</a>
-                <a href='/menu'>Menu</a>
-                </div>
-            </nav>
-        </div>
-    );
-    }
-
+  return (
+    <nav className="navbar navbar-dark bg-success">
+      <div className="container-fluid navbar-menu">
+        <a className="navbar-brand" href="/home">Online Store</a>
+        <a href="/home">Home</a>
+        <a href="/products">Products</a>
+      </div>
+    </nav>
+  );
+}
 
 export default Navbar;

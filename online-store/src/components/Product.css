@@ -1,9 +1,10 @@
 .product {
   border: 1px solid #ccc;
+  flex-direction: row;
   border-radius: 8px;
   padding: 1rem;
   width: 200px;
-  text-align: left;
+  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
@@ -11,13 +12,36 @@
 .product:hover {
   transform: scale(1.05);
 }
+img{
+  width: 150px;
+  height: 150px;
+}
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
 
 .product h3 {
   margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
+}
+
+.product-price {
+  font-size: 1rem;
+  color: #333;
 }
 
 .product p {
   margin: 0.5rem 0;
   color: #555;
+}
+
+.prod-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
