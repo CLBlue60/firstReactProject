@@ -34,7 +34,7 @@ const categories = [
 function Catalog() {
   return (
     <div className="catalog-container">
-      <h1>Check out our fresh produce!</h1>
+      <h4 className='text-warning'>Check out our fresh produce!</h4>
       <div className="categories">
         {categories.map(cat => <button className='btn btn-outline-success'>{cat}</button>) }
       </div>

@@ -4,7 +4,7 @@ import QuantityPicker from './QuantityPicker';
 
 function Product(props) {
   const add = () => {
-    // Add your logic here
+    
     console.log('Add button clicked');
   };
   return (

@@ -1,0 +1,40 @@
+.admin-page {
+  padding: 1rem;
+}
+
+.admin-sections {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-section {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(230, 4, 4, 0.1);
+  background-color: #fff;
+}
+
+.admin-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.admin-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-section .form-label {
+  margin-bottom: 0.5rem;
+}
+
+.admin-section .form-control {
+  margin-bottom: 1rem;
+}
+
+.admin-section .btn {
+  align-self: flex-start;
+}

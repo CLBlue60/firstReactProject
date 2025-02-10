@@ -1,17 +1,22 @@
 .navbar-menu {
-    padding: 5px;
-    display: flex;
-    height: 60px;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-around; /* Adjust spacing between links */
+  padding: 5px;
+  height: 60px;
+  align-items: center;
+  background-image: linear-gradient(to right top, #106700, #3c8301, #63a000, #8dbc00, #b9d900, #d2d700, #e9d400, #ffd000, #ffad00, #ff8600, #ff5a00, #f90500);
 }
-a{
-    font-size: 18px;
-    color: white;
-    letter-spacing: 1px;
-    font-weight: bolder;
-    text-decoration-color: red;
+
+.navbar-menu a {
+  font-size: 18px;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: bolder;
+  margin: 0 10px; /* Adjust margin to control spacing */
 }
-a:hover{
-    color:goldenrod;
+
+.navbar-menu a:hover {
+  color: goldenrod;
+  text-decoration-color: red;
+  font-size: 24px;
 }

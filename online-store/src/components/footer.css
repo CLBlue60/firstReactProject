@@ -1,5 +1,6 @@
 footer {
-  position: fixed;
+  position: relative;
   width: 100%;
   bottom: 0;
+  background-image: linear-gradient(to right top, #106700, #3c8301, #63a000, #8dbc00, #b9d900, #d2d700, #e9d400, #ffd000, #ffad00, #ff8600, #ff5a00, #f90500);
 }
