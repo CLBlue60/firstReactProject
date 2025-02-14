@@ -1,8 +1,6 @@
-.App {
-  text-align: center;
-}
 body{
   background-color: lightgray;
+  align-items: center;
 }
 
 .App-logo {
@@ -15,9 +13,12 @@ body{
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.navbar{
+  position: absolute;
+  top: 0;
+}
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,7 +29,7 @@ body{
 }
 
 .App-link {
-  color: #61dafb;
+  color: #056412;
 }
 
 @keyframes App-logo-spin {
@@ -47,5 +48,18 @@ body{
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  min-height: 100vh; /* Ensure the catalog takes up the full height of the viewport */
+  min-height: 100vh;
+}
+.about-page{
+  color: #056412;
+}
+h1{
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+footer{
+  position: fixed;
+  bottom: 0;
 }

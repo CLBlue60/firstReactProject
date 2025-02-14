@@ -1,5 +1,7 @@
 import React from 'react';
 import Product from '../components/Product';
+import '../components/Product.css';
+import './Catalog.css';
 
 const catalog = [
   {
@@ -36,7 +38,7 @@ function Catalog() {
     <div className="catalog-container">
       <h4 className='text-warning'>Check out our fresh produce!</h4>
       <div className="categories">
-        {categories.map(cat => <button className='btn btn-outline-success'>{cat}</button>) }
+        {categories.map(cat => <button key={cat} className='btn btn-outline-success'>{cat}</button>)}
       </div>
       <div className="catalog">
         {catalog.map(prod => <Product key={prod._id} data={prod} />)}

@@ -1,6 +1,5 @@
 .navbar-menu {
   display: flex;
-  justify-content: space-around; /* Adjust spacing between links */
   padding: 5px;
   height: 60px;
   align-items: center;
@@ -12,7 +11,6 @@
   color: white;
   letter-spacing: 1px;
   font-weight: bolder;
-  margin: 0 10px; /* Adjust margin to control spacing */
 }
 
 .navbar-menu a:hover {
