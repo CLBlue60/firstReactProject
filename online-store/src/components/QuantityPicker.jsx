@@ -1,26 +1,34 @@
 import { useState } from "react";
 import "./QuantityPicker.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@fortawesome/fontawesome-free/js/all.min.js";
 
-function QuantityPicker() {
+function QuantityPicker({ onChange }) {
     const [quantity, setQuantity] = useState(1);
 
     function increase() {
         const value = quantity + 1;
         setQuantity(value);
+        onChange(value);
     }
 
     function decrease() {
         if (quantity > 1) {
             const value = quantity - 1;
             setQuantity(value);
+            onChange(value);
         }
     }
 
     return (
-        <div className="qt-picker">
-            <button disabled={quantity === 1} onClick={decrease}> - </button>
-            <label>{quantity}</label>
-            <button className='btn btn-sm btn-danger' onClick={increase}> + </button>
+        <div>
+            <button className="btn btn-sm btn-danger" onClick={decrease}>
+                <i className="fa-solid fa-cart-arrow-down"></i>
+            </button>
+            <span className="mx-2">{quantity}</span>
+            <button className="btn btn-sm btn-success" onClick={increase}>
+                <i className="fa-solid fa-cart-plus"></i>
+            </button>
         </div>
     );
 }

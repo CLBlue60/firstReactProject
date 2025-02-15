@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './About.css';
-import supermarketImg from '../assets/supermarketimg.jpg'; // Import the image
+import supermarketImg from '../assets/supermarketimg.jpg';
+import { Link } from 'react-router-dom';
 
 function About() {
     const [showEmail, setShowEmail] = useState(false);
@@ -12,7 +13,7 @@ function About() {
     return (
         <div
             className="about-page"
-            style={{ backgroundImage: `url(${supermarketImg})` }} // Use the imported image
+            style={{ backgroundImage: `url(${supermarketImg})` }}
         >
             <h1>C. Blue</h1>
 
@@ -21,6 +22,8 @@ function About() {
             <button className='btn btn-success' onClick={showInfo}>
                 {showEmail ? 'Hide Email' : 'Show Email'}
             </button>
+
+            <Link to="/contact" className="btn btn-lg btn-danger mt-3">Contact Us</Link>
         </div>
     );
 }
