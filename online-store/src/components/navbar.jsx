@@ -8,7 +8,17 @@ import DataContext from '../state/dataContext';
 
 function Navbar() {
   const location = useLocation();
-  const user = useContext(DataContext).user;
+  const { user, cart } = useContext(DataContext);
+
+  function getProdsInCart() {
+    let sum = 0;
+
+    for(let i=0; i<cart.length; i++) {
+      let prod = cart[i];
+      sum += prod.quantity;
+    }
+    return sum;
+  }
 
   return (
     <nav className="navbar">
@@ -18,16 +28,28 @@ function Navbar() {
           <i className="fa-solid fa-house"></i> Home
         </Link>
         <Link className={`nav-link ${location.pathname === '/catalog' ? 'active' : ''}`} to="/catalog">
-        <i class="fa-solid fa-book-open"></i>Catalog</Link>
+          <i className="fa-solid fa-book-open"></i> Catalog
+        </Link>
         <Link className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} to="/about">
-        <i class="fa-solid fa-circle-info"></i>About Us</Link>
+          <i className="fa-solid fa-circle-info"></i> About Us
+        </Link>
         <Link className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`} to="/admin">
-        <i class="fa-solid fa-user-tie"></i>Admin</Link>
+          <i className="fa-solid fa-user-tie"></i> Admin
+        </Link>
         <Link className={`nav-link ${location.pathname === '/cart' ? 'active' : ''}`} to="/cart">
           <i className="fa-solid fa-cart-shopping"></i> View Cart
         </Link>
         <Link className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`} to="/contact">
-        <i class="fa-solid fa-address-book"></i>Contact</Link>
+          <i className="fa-solid fa-address-book"></i> Contact
+        </Link>
+        <Link className={`nav-link ${location.pathname === '/checkout' ? 'active' : ''}`} to="/checkout">
+          <i className="fa-solid fa-credit-card"></i> Checkout
+        </Link>
+
+        <Link className='end' to='/cart'>
+          <i className="fa-solid fa-cart-shopping"></i> {getProdsInCart()}
+        </Link>
+
         <button className="btn btn-success user-info" type="button">
           <i className="fa-solid fa-user"></i>
           Hello: {user.name}

@@ -17,9 +17,9 @@ function About() {
             className="about-page"
             style={{ backgroundImage: `url(${supermarketImg})` }}
         >
-            <h1>C. Blue</h1>
+            <h1 className="about-title">C. Blue</h1>
 
-            {showEmail ? <h5>clblue@yahoo.com</h5> : null}
+            {showEmail ? <h5 className="about-title">clblue@yahoo.com</h5> : null}
 
             <button className='btn btn-success' onClick={showInfo}>
                 {showEmail ? (
@@ -34,7 +34,8 @@ function About() {
             </button>
 
             <Link to="/contact" className="btn btn-lg btn-danger mt-3">
-            <i class="fa-solid fa-inbox"></i>Contact Us</Link>
+                <i className="fa-solid fa-inbox"></i> Contact Us
+            </Link>
         </div>
     );
 }

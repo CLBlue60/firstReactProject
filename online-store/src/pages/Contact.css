@@ -36,13 +36,13 @@
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #007bff;
+  border-color: #ff0800;
   outline: none;
 }
 
 .contact-form button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #ece90b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -51,7 +51,7 @@
 }
 
 .contact-form button:hover {
-  background-color: #0056b3;
+  background-color: #07771f;
 }
 
 .contact-page {
@@ -67,7 +67,7 @@
 
 .contact-page h1 {
   margin-bottom: 1rem;
-  color: #28a745; /* Bootstrap's success color */
+  color: #28a745;
 }
 
 .contact-page form {
@@ -76,7 +76,7 @@
   background: white;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(4, 122, 8, 0.908);
 }
 
 .contact-page .form-label {

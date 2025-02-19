@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./QuantityPicker.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@fortawesome/fontawesome-free/js/all.min.js";
 
-function QuantityPicker({ onChange }) {
-    const [quantity, setQuantity] = useState(1);
+function QuantityPicker({ initialQuantity = 1, onChange }) {
+    const [quantity, setQuantity] = useState(initialQuantity);
+
+    useEffect(() => {
+        setQuantity(initialQuantity);
+    }, [initialQuantity]);
 
     function increase() {
         const value = quantity + 1;

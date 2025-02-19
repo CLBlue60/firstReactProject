@@ -1,20 +1,47 @@
 .admin-page {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.admin-title {
+  margin-bottom: 2rem;
+  color: #28a745; /* Bootstrap success color */
 }
 
 .admin-sections {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .admin-section {
-  flex: 1;
-  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  padding: 2rem;
   border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(230, 4, 4, 0.1);
-  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(2, 94, 19, 0.945);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .admin-section h2 {

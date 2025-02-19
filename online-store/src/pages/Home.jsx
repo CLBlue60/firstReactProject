@@ -15,7 +15,7 @@ const Home = () => {
                 height: '100vh',
             }}
         >
-            <h1>Welcome to the Online Store</h1>
+            <h1 className="home-title">Welcome to the Online Store</h1>
             <Link to="/catalog" className="btn btn-lg btn-success">Discover our amazing products and deals!</Link>
         </div>
     );

@@ -1,5 +1,5 @@
 .cart-page {
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
 }
 
@@ -11,8 +11,8 @@
 }
 
 .cart-item {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(220, 205, 2, 0.921);
 }
