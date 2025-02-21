@@ -8,6 +8,7 @@ function Checkout() {
   const [total, setTotal] = useState(0);
   const [showBillingForm, setShowBillingForm] = useState(false);
 
+  // State for shipping information
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
@@ -16,6 +17,7 @@ function Checkout() {
     zip: "",
   });
 
+  // State for billing information
   const [billingInfo, setBillingInfo] = useState({
     name: "",
     address: "",
@@ -27,6 +29,7 @@ function Checkout() {
     paymentMethod: "",
   });
 
+  // Calculate total price of items in the cart
   useEffect(() => {
     const newTotal = cart.reduce(
       (acc, item) => acc + item.price * item.quantity,
@@ -35,11 +38,13 @@ function Checkout() {
     setTotal(newTotal);
   }, [cart]);
 
+  // Handle shipping form submission
   const handleShippingSubmit = (e) => {
     e.preventDefault();
     console.log("Shipping Info:", shippingInfo);
     setShowBillingForm(true);
 
+    // Reset the shipping form
     setShippingInfo({
       name: "",
       address: "",
@@ -49,10 +54,12 @@ function Checkout() {
     });
   };
 
+  // Handle billing form submission
   const handleBillingSubmit = (e) => {
     e.preventDefault();
     console.log("Billing Info:", billingInfo);
 
+    // Show success message
     Swal.fire({
       title: "Order Placed!",
       text: "Your order has been successfully placed.",
@@ -60,6 +67,7 @@ function Checkout() {
       confirmButtonText: "OK",
     });
 
+    // Reset the billing form
     setBillingInfo({
       name: "",
       address: "",
@@ -71,9 +79,11 @@ function Checkout() {
       paymentMethod: "",
     });
 
+    // Hide the billing form
     setShowBillingForm(false);
   };
 
+  // Handle shipping form input changes
   const handleShippingChange = (e) => {
     const { id, value } = e.target;
     setShippingInfo((prevInfo) => ({
@@ -82,6 +92,7 @@ function Checkout() {
     }));
   };
 
+  // Handle billing form input changes
   const handleBillingChange = (e) => {
     const { id, value } = e.target;
     setBillingInfo((prevInfo) => ({
@@ -94,11 +105,17 @@ function Checkout() {
     <div className="checkout-page text-success">
       <h1 className="checkout-title">Checkout</h1>
 
+      {/* Order Summary */}
       <div className="checkout-summary">
         <h2>Order Summary</h2>
         <ul>
           {cart.map((item) => (
-            <li key={item._id}>
+            <li key={item._id} className="checkout-item">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="checkout-item-image"
+              />
               {item.title} - {item.quantity} x ${item.price.toFixed(2)} = $
               {(item.price * item.quantity).toFixed(2)}
             </li>
@@ -107,68 +124,72 @@ function Checkout() {
         <h3>Total: ${total.toFixed(2)}</h3>
       </div>
 
-      <form className="checkout-form" onSubmit={handleShippingSubmit}>
-        <h2>Shipping Information</h2>
-        <div className="form-group">
-          <label htmlFor="name">Full Name</label>
-          <input
-            type="text"
-            id="name"
-            className="form-control"
-            value={shippingInfo.name}
-            onChange={handleShippingChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="address">Address</label>
-          <input
-            type="text"
-            id="address"
-            className="form-control"
-            value={shippingInfo.address}
-            onChange={handleShippingChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            id="city"
-            className="form-control"
-            value={shippingInfo.city}
-            onChange={handleShippingChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="state">State</label>
-          <input
-            type="text"
-            id="state"
-            className="form-control"
-            value={shippingInfo.state}
-            onChange={handleShippingChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="zip">ZIP Code</label>
-          <input
-            type="text"
-            id="zip"
-            className="form-control"
-            value={shippingInfo.zip}
-            onChange={handleShippingChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-success">
-          Continue to Billing
-        </button>
-      </form>
+      {/* Shipping Form */}
+      {!showBillingForm && (
+        <form className="checkout-form" onSubmit={handleShippingSubmit}>
+          <h2>Shipping Information</h2>
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              className="form-control"
+              value={shippingInfo.name}
+              onChange={handleShippingChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              className="form-control"
+              value={shippingInfo.address}
+              onChange={handleShippingChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="city">City</label>
+            <input
+              type="text"
+              id="city"
+              className="form-control"
+              value={shippingInfo.city}
+              onChange={handleShippingChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="state">State</label>
+            <input
+              type="text"
+              id="state"
+              className="form-control"
+              value={shippingInfo.state}
+              onChange={handleShippingChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="zip">ZIP Code</label>
+            <input
+              type="text"
+              id="zip"
+              className="form-control"
+              value={shippingInfo.zip}
+              onChange={handleShippingChange}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-success">
+            Continue to Billing
+          </button>
+        </form>
+      )}
 
+      {/* Billing Form */}
       {showBillingForm && (
         <form className="checkout-form" onSubmit={handleBillingSubmit}>
           <h2>Billing Information</h2>

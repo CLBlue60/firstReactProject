@@ -6,16 +6,19 @@ import "@fortawesome/fontawesome-free/js/all.min.js";
 function QuantityPicker({ initialQuantity = 1, onChange }) {
     const [quantity, setQuantity] = useState(initialQuantity);
 
+    // Update quantity when initialQuantity changes
     useEffect(() => {
         setQuantity(initialQuantity);
     }, [initialQuantity]);
 
+    // Increase quantity
     function increase() {
         const value = quantity + 1;
         setQuantity(value);
         onChange(value);
     }
 
+    // Decrease quantity
     function decrease() {
         if (quantity > 1) {
             const value = quantity - 1;

@@ -3,8 +3,9 @@ import Product from '../components/Product';
 import '../components/Product.css';
 import './Catalog.css';
 import DataContext from '../state/dataContext';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 
+// Sample catalog data
 const catalog = [
   {
     title: "Peaches",
@@ -64,6 +65,7 @@ const catalog = [
   }
 ];
 
+// Sample categories
 const categories = [
   "All",
   "Fruits",
@@ -76,11 +78,13 @@ function Catalog() {
   const [total, setTotal] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  // Calculate total price of items in the cart
   useEffect(() => {
     const newTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     setTotal(newTotal);
   }, [cart]);
 
+  // Handle adding a product to the cart
   const handleAddToCart = (product, quantity) => {
     addProductToCart(product, quantity);
 
@@ -95,10 +99,12 @@ function Catalog() {
     });
   };
 
+  // Handle category change
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
+  // Filter catalog based on selected category
   const filteredCatalog = selectedCategory === "All" ? catalog : catalog.filter(prod => prod.category === selectedCategory);
 
   return (

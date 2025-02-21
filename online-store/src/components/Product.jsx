@@ -1,18 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Product.css';
 import QuantityPicker from './QuantityPicker';
-import DataContext from '../state/dataContext';
 
 function Product({ data, onAddToCart }) {
   const [quantity, setQuantity] = useState(1);
 
+  // Handle quantity change
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
   };
 
+  // Handle adding product to cart
   const handleAddToCart = () => {
     onAddToCart(data, quantity);
-    setQuantity(1); 
+    setQuantity(1);
   };
 
   const totalPrice = (data.price * quantity).toFixed(2);

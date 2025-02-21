@@ -8,6 +8,7 @@ function Cart() {
   const { cart, setCart, clearCart } = useContext(DataContext);
   const [total, setTotal] = useState(0);
 
+  // Load cart items from local storage on component mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart'));
     if (storedCart) {
@@ -15,22 +16,26 @@ function Cart() {
     }
   }, [setCart]);
 
+  // Update total price whenever cart items change
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     const newTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     setTotal(newTotal);
   }, [cart]);
 
+  // Update the quantity of a specific item in the cart
   const updateTotal = (index, newQuantity) => {
     const newCartItems = [...cart];
     newCartItems[index].quantity = newQuantity;
     setCart(newCartItems);
   };
 
+  // Get the total number of products in the cart
   const getTotalProducts = () => {
     return cart.reduce((acc, item) => acc + item.quantity, 0);
   };
 
+  // Clear the cart and remove items from local storage
   const handleClearCart = () => {
     clearCart();
     localStorage.removeItem('cart');
@@ -43,6 +48,7 @@ function Cart() {
       <div className="cart-items">
         {cart.map((item, index) => (
           <div key={item._id} className="cart-item">
+            <img src={item.image} alt={item.title} className="cart-item-image" />
             <h3>{item.title}</h3>
             <p>Price: ${item.price}</p>
             <QuantityPicker initialQuantity={item.quantity} onChange={(newQuantity) => updateTotal(index, newQuantity)} />
@@ -51,8 +57,10 @@ function Cart() {
         ))}
       </div>
       <h2 className="text-danger">Total: ${total.toFixed(2)}</h2>
-      <button className="btn btn-danger mt-3" onClick={handleClearCart}>Clear All</button>
-      <Link to="/checkout" className="btn btn-success mt-3">Proceed to Checkout</Link>
+      <div className="cart-buttons">
+        <button className="btn btn-danger" onClick={handleClearCart}>Clear All</button>
+        <Link to="/checkout" className="btn btn-success">Proceed to Checkout</Link>
+      </div>
     </div>
   );
 }

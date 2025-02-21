@@ -10,6 +10,7 @@ function Navbar() {
   const location = useLocation();
   const { user, cart } = useContext(DataContext);
 
+  // Get total number of products in the cart
   function getProdsInCart() {
     let sum = 0;
 

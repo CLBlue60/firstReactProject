@@ -15,4 +15,24 @@
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(220, 205, 2, 0.921);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cart-buttons .btn {
+  margin: 0.5rem;
 }
