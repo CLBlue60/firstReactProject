@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Admin.css';
 import Swal from 'sweetalert2';
+import DataService from '../services/dataService';
 
 function Admin() {
   const [coupon, setCoupon] = useState({
@@ -20,6 +21,24 @@ function Admin() {
 
   const [allProducts, setAllProducts] = useState([]);
 
+  // Load products function
+  async function loadProducts() {
+    const data = await DataService.getProducts();
+    setAllProducts(data);
+  }
+
+  // Load coupons function
+  async function loadCoupons() {
+    const data = await DataService.getCoupons();
+    setAllCoupons(data);
+  }
+
+  // Call loadProducts and loadCoupons when the component mounts
+  useEffect(() => {
+    loadProducts();
+    loadCoupons();
+  }, []);
+
   // Handle coupon input changes
   function handleCoupon(e) {
     const text = e.target.value;
@@ -32,12 +51,17 @@ function Admin() {
   }
 
   // Add a new coupon
-  function addCoupon(e) {
+  async function addCoupon(e) {
     e.preventDefault();
     console.log("Coupon added:", coupon);
 
+    let validCoupon = { ...coupon };
+    validCoupon.discount = parseFloat(validCoupon.discount);
+
+    await DataService.saveCoupons(validCoupon);
+
     let copy = [...allCoupons];
-    copy.push(coupon);
+    copy.push(validCoupon);
     setAllCoupons(copy);
 
     // Show SweetAlert2 alert
@@ -67,12 +91,16 @@ function Admin() {
   }
 
   // Save a new product
-  function saveProduct(e) {
+  async function saveProduct(e) {
     e.preventDefault();
-    console.log("Product saved:", product);
+
+    let validProd = { ...product };
+    validProd.price = parseFloat(validProd.price);
+
+    await DataService.saveProducts(validProd);
 
     let copy = [...allProducts];
-    copy.push(product);
+    copy.push(validProd);
     setAllProducts(copy);
 
     // Show SweetAlert2 alert
