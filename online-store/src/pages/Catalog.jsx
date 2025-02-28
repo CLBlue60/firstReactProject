@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Product from '../components/Product';
 import '../components/Product.css';
 import './Catalog.css';
@@ -121,6 +122,9 @@ function Catalog() {
         {filteredCatalog.map(prod => <Product key={prod._id} data={prod} onAddToCart={handleAddToCart} />)}
       </div>
       <h2 className='text-danger'>Total: ${total.toFixed(2)}</h2>
+      <Link to="/cart">
+        <button className="btn btn-warning">Go to Cart</button>
+      </Link>
     </div>
   );
 }
