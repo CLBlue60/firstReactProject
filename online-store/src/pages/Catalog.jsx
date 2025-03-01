@@ -32,6 +32,7 @@ function Catalog() {
   }, [cart]);
 
   const handleAddToCart = (product, quantity) => {
+    console.log("Adding to cart from Catalog:", product, quantity);
     addProductToCart(product, quantity);
 
     Swal.fire({

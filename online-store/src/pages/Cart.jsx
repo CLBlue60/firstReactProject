@@ -3,10 +3,11 @@ import './Cart.css';
 import QuantityPicker from '../components/QuantityPicker';
 import DataContext from '../state/dataContext';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Cart() {
-  const { cart, setCart, clearCart } = useContext(DataContext);
-  const [total, setTotal] = useState(0);
+  const { cart, setCart, clearCart, removeProductFromCart, applyCoupon, appliedCoupon } = useContext(DataContext);
+  const [couponCode, setCouponCode] = useState('');
 
   // Load cart items from local storage on component mount
   useEffect(() => {
@@ -17,10 +18,9 @@ function Cart() {
   }, [setCart]);
 
   // Update total price whenever cart items change
+  // Update cart items in local storage whenever cart items change
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
-    const newTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    setTotal(newTotal);
   }, [cart]);
 
   // Update the quantity of a specific item in the cart
@@ -41,6 +41,26 @@ function Cart() {
     localStorage.removeItem('cart');
   };
 
+  const handleApplyCoupon = () => {
+    applyCoupon(couponCode);
+    Swal.fire({
+      title: 'Coupon Applied!',
+      text: `Coupon code ${couponCode} has been applied.`,
+      icon: 'success',
+      confirmButtonText: 'OK',
+      timer: 3000,
+      timerProgressBar: true
+    });
+  };
+
+  const calculateTotal = () => {
+    const total = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+    if (appliedCoupon) {
+      return total - (total * appliedCoupon.discount / 100);
+    }
+    return total;
+  };
+
   return (
     <div className="cart-page">
       <h1 className="text-success">Ready to checkout?</h1>
@@ -53,10 +73,25 @@ function Cart() {
             <p>Price: ${item.price}</p>
             <QuantityPicker initialQuantity={item.quantity} onChange={(newQuantity) => updateTotal(index, newQuantity)} />
             <p>Total: ${item.price * item.quantity}</p>
+            <button className='btn btn-danger' onClick={() => removeProductFromCart(item._id)}>Remove</button>
           </div>
         ))}
       </div>
-      <h2 className="text-danger">Total: ${total.toFixed(2)}</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter coupon code"
+          value={couponCode}
+          onChange={(e) => setCouponCode(e.target.value)}
+        />
+        <button className="btn btn-success" onClick={handleApplyCoupon}>Apply Coupon</button>
+      </div>
+      {appliedCoupon && (
+        <div>
+          <p>Coupon Applied: {appliedCoupon.code} - {appliedCoupon.discount}% off</p>
+        </div>
+      )}
+      <h2 className="text-danger">Total: ${calculateTotal().toFixed(2)}</h2>
       <div className="cart-buttons">
         <button className="btn btn-danger" onClick={handleClearCart}>Clear All</button>
         <Link to="/checkout" className="btn btn-success">Proceed to Checkout</Link>
